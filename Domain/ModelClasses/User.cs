@@ -8,6 +8,6 @@ public class User
 
     public override string ToString()
     {
-        return $"Username: {UserName}, Password: {Password}, Id: {Id}";
+        return $"Username: {UserName}, Id: {Id}";
     }
 }
