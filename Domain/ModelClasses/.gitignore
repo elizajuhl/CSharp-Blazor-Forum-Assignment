@@ -1,0 +1,45 @@
+# Visual Studio / Rider / VS Code local settings
+
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# Build results
+
+bin/
+obj/
+[Bb]in/
+[Oo]bj/
+
+# .NET generated files
+
+project.assets.json
+project.nuget.cache
+*.nupkg
+*.snupkg
+
+# Logs
+
+*.log
+
+# Test results
+
+TestResults/
+.coverage/
+*.coverage
+*.trx
+
+# OS generated files
+
+.DS_Store
+Thumbs.db
+
+# Local environment files
+
+.env
+*.env
