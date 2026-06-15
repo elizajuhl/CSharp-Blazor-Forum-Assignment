@@ -1,0 +1,36 @@
+﻿@page "/addpost"
+@attribute [Authorize]
+@using Domain.ModelClasses
+@using Domain.DataAccessContracts
+@inject IPostDao PostDao
+@inject NavigationManager NavigationManager
+
+<h3>AddPost</h3>
+<div class="col-md-6 col-lg-4 mx-auto p-3">
+    <RadzenCard >
+        <div class="row pb-3">
+            <RadzenTextBox Placeholder="Post header" @bind-Value="@post.Header"/>
+        </div>
+        <div class="row pb-3">
+            <RadzenTextArea Placeholder="Post message" @bind-Value="@post.Body"/>
+        </div>
+        <div class="row">
+            <RadzenButton Click=@(() => OnSubmit()) ButtonType="ButtonType.Submit" Icon="add_circle_outline" Text="Post"/>
+        </div>
+    </RadzenCard>
+</div>
+
+@code {
+
+    Post post = new Post();
+    
+    private async Task OnSubmit()
+    {
+        post.OwnerId = "1"; 
+        var addPostAsync = await PostDao.AddPostAsync(post);
+        NavigationManager.NavigateTo($"/viewpost/{addPostAsync.Id}");
+    }
+    
+    
+
+}

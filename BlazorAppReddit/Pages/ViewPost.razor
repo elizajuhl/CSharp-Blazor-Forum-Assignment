@@ -1,0 +1,51 @@
+﻿@page "/viewpost/{Id:int}"
+@attribute [Authorize]
+@using Domain.ModelClasses
+@using Domain.DataAccessContracts
+@inject IPostDao postDao
+
+<h3>ViewPost</h3>
+@if (postToShow == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <div class="row my-5">
+        <div class="col-lg-6 col-xl-4 offset-lg-3 offset-xl-4">
+            <RadzenCard class="m-3">
+                <RadzenCard class="m-3">
+                    <h3 class="h5">Title</h3>
+                    <div class="d-flex flex-row">
+                        <div>
+                            <b>@(postToShow.Header)</b>
+                        </div>
+                    </div>
+                </RadzenCard>
+
+                <RadzenCard class="m-3">
+                    <h3 class="h5">Post</h3>
+                    <div class="d-flex flex-row">
+                        <div>
+                            <b>@(postToShow.Body)</b>
+                        </div>
+                    </div>
+                </RadzenCard>
+            </RadzenCard >
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int Id { set; get; } // save the id that you receive from the other page in this var/property so you can use it
+
+    private Post? postToShow;
+
+    protected override async Task OnInitializedAsync()
+    {
+        postToShow = await postDao.GetPostByIdAsync(Id);
+    }
+
+}

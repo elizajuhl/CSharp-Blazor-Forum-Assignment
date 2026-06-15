@@ -1,0 +1,40 @@
+﻿@page "/allposts"
+@attribute [Authorize]
+@using Domain.ModelClasses
+@using Domain.DataAccessContracts
+@inject IPostDao postDao
+@inject NavigationManager NavigationManager
+
+<h3>ViewAllPosts</h3>
+
+@if (posts == null) // sometimes the view part will load faster than the data from the code so you need this check
+{
+    <p>Loading...</p>
+}
+else
+{
+    <RadzenDataGrid AllowFiltering="false" AllowPaging="false"
+                    AllowSorting="true" Data="@posts" TItem="Post" ColumnWidth="200px"
+                    RowSelect="OpenPost">
+        <Columns>
+            <RadzenDataGridColumn TItem="Post" Property="Header" Title="Title"/>
+        </Columns>
+    </RadzenDataGrid>
+}
+
+@code {
+
+
+    ICollection<Post> posts;
+    
+    protected override async Task OnInitializedAsync() // use this method first to fetch the data and populate the List
+    {
+        posts = await postDao.GetAllPostsAsync();
+    }
+
+    private void OpenPost(Post obj)
+    {
+        NavigationManager.NavigateTo($"/viewpost/{obj.Id}");
+    }
+
+}

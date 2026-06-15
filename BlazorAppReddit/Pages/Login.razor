@@ -1,0 +1,45 @@
+﻿@page "/login"
+
+@using Domain.ModelClasses
+@using Domain.DataAccessContracts
+@using BlazorAppReddit.Authentication
+@inject NavigationManager NavigationManager
+@inject IAuthService authService
+
+<div class="col-xl-6 p-3 mx-auto">
+    <RadzenCard>
+        <h2 class="mb-4">Login</h2>
+        <RadzenTemplateFor Data=@("LoginWithRegister")>
+            <RadzenLogin
+                AllowResetPassword="false"
+                RegisterText="Register"
+                Login=@(args => OnLogin(args))
+                Register=@(args => OnRegister())>
+            </RadzenLogin>
+        </RadzenTemplateFor>
+    </RadzenCard>
+</div>
+
+@code {
+ 
+    string userName = "admin";
+    string password = "admin";
+
+    void OnLogin(LoginArgs args)
+    {
+        var user = new User()
+        {
+            UserName = args.Username,
+            Password = args.Password
+        };
+
+        authService.LoginAsync(user);
+        NavigationManager.NavigateTo("/");
+    }
+
+    void OnRegister()
+    {
+        NavigationManager.NavigateTo("/register");
+    }
+
+}

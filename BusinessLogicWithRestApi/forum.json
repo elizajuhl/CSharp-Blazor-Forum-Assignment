@@ -1,0 +1,35 @@
+{
+  "Users": [
+    {
+      "UserName": "tomaszg",
+      "Password": "tomaszg",
+      "Id": 1
+    }
+  ],
+  "Posts": [
+    {
+      "Header": "aaa",
+      "Body": "bbb",
+      "OwnerId": "1",
+      "Id": 1
+    },
+    {
+      "Header": "eee",
+      "Body": "rrr",
+      "OwnerId": "1",
+      "Id": 2
+    },
+    {
+      "Header": "yyy",
+      "Body": "hhh",
+      "OwnerId": "1",
+      "Id": 3
+    },
+    {
+      "Header": "zzz",
+      "Body": "xxx",
+      "OwnerId": "1",
+      "Id": 4
+    }
+  ]
+}

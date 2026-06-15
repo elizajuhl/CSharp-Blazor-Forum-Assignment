@@ -1,0 +1,26 @@
+@page "/"
+@using BlazorAppReddit.Authentication
+@using UIElements
+@inject IAuthService authService
+@inject NavigationManager navMgr
+
+<PageTitle>Index</PageTitle>
+<AuthorizeView>
+    <NotAuthorized>
+        <div class="card">
+            <h3>Hello dear unknown user.</h3>
+            Welcome to the forum. Please log in first. Then you'll be able to see the forum's posts as well as public a new one.
+        </div>
+    </NotAuthorized>
+    <Authorized>
+        <div class="card">
+            <h3>Hello, @context.User.Identity.Name .</h3>
+            You know what to do.
+        </div>
+    </Authorized>
+</AuthorizeView>
+
+<!--
+<SurveyPrompt Title="How is Blazor working for you?"/>
+-->
+
